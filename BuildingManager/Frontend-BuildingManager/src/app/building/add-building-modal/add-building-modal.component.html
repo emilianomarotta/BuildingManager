@@ -1,0 +1,40 @@
+<div class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50" *ngIf="isVisible">
+    <div class="bg-white p-6 rounded shadow-lg w-full max-w-md">
+      <h2 class="text-2xl mb-4">Add building</h2>
+      <form [formGroup]="buildingForm" (ngSubmit)="submit()">
+        <div class="mb-4">
+          <label class="block text-gray-700">Name *</label>
+          <input class="w-full px-3 py-2 border rounded" formControlName="name" placeholder="Building name" required="">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700">Address *</label>
+          <input class="w-full px-3 py-2 border rounded" formControlName="address" placeholder="City, Address 1234" required="">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700">Location *</label>
+          <input class="w-full px-3 py-2 border rounded" formControlName="location" placeholder="-12.3456, -21.1234" required="">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700">Fees *</label>
+          <input class="w-full px-3 py-2 border rounded" formControlName="fees" placeholder="9999" required="">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700">Company *</label>
+          <select class="w-full px-3 py-2 border rounded" formControlName="companyId">
+            <option *ngFor="let company of companies" [value]="company.id">{{ company.name }}</option>
+          </select>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700">Manager (Optional)</label>
+            <select class="w-full px-3 py-2 border rounded text-gray-700" formControlName="managerId">
+              <option value="">---</option>
+              <option *ngFor="let manager of managers" [value]="manager.id">{{ manager.name }} {{ manager.lastName }}</option>
+            </select>
+        </div>
+        <div class="flex justify-end">
+          <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" (click)="close()">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-emerald-500 text-white rounded">Add</button>
+        </div>
+      </form>
+    </div>
+</div>

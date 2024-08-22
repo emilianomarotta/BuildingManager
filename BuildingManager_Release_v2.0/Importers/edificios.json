@@ -1,0 +1,18 @@
+[
+  {
+    "Name": "Alas",
+    "Address": "Soriano, Varelaaa 1511",
+    "Location": "19.112331, 16.12731",
+    "CompanyId": 1,
+    "ManagerId": 2,
+    "Fees": 8000
+  },
+  {
+	"Name": "Isabelita",
+    "Address": "Coloniaaaa, Varelaaa 1511",
+    "Location": "18.134351, 14.12731",
+    "CompanyId": 1,
+    "ManagerId": 2,
+    "Fees": 8000
+  }
+]

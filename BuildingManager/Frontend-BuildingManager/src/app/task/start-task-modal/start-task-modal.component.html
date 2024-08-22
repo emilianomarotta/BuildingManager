@@ -1,0 +1,18 @@
+<div *ngIf="isVisible" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+    <div class="bg-white p-6 rounded shadow-lg w-full max-w-md">
+      <h2 class="text-2xl mb-4">Start Task</h2>
+      <form [formGroup]="taskForm" (ngSubmit)="submit()">
+        <div class="mb-4">
+          <label class="block text-gray-700">Staff member</label>
+          <select class="w-full px-3 py-2 border rounded" formControlName="staffId">
+            <option *ngFor="let staffMember of staffs" [value]="staffMember.id">{{ staffMember.name }}</option>
+          </select>
+        </div>
+        <div class="flex justify-end">
+          <button type="button" class="mr-2 px-4 py-2 bg-gray-500 text-white rounded" (click)="close()">Cancel</button>
+          <button type="submit" class="px-4 py-2 bg-emerald-500 text-white rounded">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,6 @@
+.bg-gradient-emerald {
+    background: linear-gradient(to bottom, #40c17e 50%, #fff 100%);
+  }
+  .half-screen {
+    height: 50vh;
+  }

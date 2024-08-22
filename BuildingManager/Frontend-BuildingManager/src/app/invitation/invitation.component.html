@@ -1,0 +1,41 @@
+<div>
+    <app-header></app-header>
+    <app-sidenav></app-sidenav>
+    <div class="min-h-screen flex flex-col bg-gradient-to-t from-emerald-200 to-white">
+        <div class="container mx-auto px-4 pt-6">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl text-emerald-800 font-bold mb-4">Invitations</h1>
+                <button (click)="openModal()" class="px-2 py-2 bg-emerald-700 text-white rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+            <div class="relative overflow-visible rounded-lg shadow-lg">
+                <table class="min-w-full bg-white rounded-lg relative z-0">
+                <thead class="text-emerald-800">
+                    <tr>
+                        <th class="py-2 px-4 border-b">Email</th>
+                        <th class="py-2 px-4 border-b">Expiration date</th>
+                        <th class="py-2 px-4 border-b">Role</th>
+                        <th class="py-2 px-4 border-b">Status</th>
+                        <th class="py-2 px-4 border-b">Respond Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let invitation of invitations" class="text-center">
+                      <td class="py-2 px-4 border-b">{{ invitation.email }}</td>
+                      <td class="py-2 px-4 border-b">{{ invitation.expiration }}</td>
+                      <td class="py-2 px-4 border-b">{{ getRoleDescription(invitation.role) }}</td>
+                      <td class="py-2 px-4 border-b">{{ getStatusDescription(invitation.status) }}</td>
+                      <td class="py-2 px-4 border-b">
+                        <a *ngIf="isPending(invitation.status)" [routerLink]="['/invitation-response', invitation.id]" class="text-emerald-700 underline">Respond</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <app-add-invitation-modal #addInvitationModal (invitationAdded)="onInvitationAdded()"></app-add-invitation-modal>
+</div>

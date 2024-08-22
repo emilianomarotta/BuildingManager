@@ -1,0 +1,48 @@
+<div>
+    <app-header></app-header>
+    <app-sidenav></app-sidenav>
+    <div class="min-h-screen flex flex-col bg-gradient-to-t from-emerald-200 to-white">
+        <div class="container mx-auto px-4 pt-6">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl text-emerald-800 font-bold mb-4">Categories</h1>
+                <button *ngIf="getRole() === 'Administrator'" (click)="openModal()" class="px-2 py-2 bg-emerald-700 text-white rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+            <div class="relative overflow-visible rounded-lg shadow-lg">
+                <table class="min-w-full bg-white rounded-lg relative z-0">
+                    <thead class="text-emerald-800">
+                        <tr>
+                            <th class="py-2 px-4 border-b">Id</th>
+                            <th class="py-2 px-4 border-b">Name</th>
+                            <th class="py-2 px-4 border-b">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let category of categories; let i = index" class="text-center">
+                            <td class="py-2 px-4 border-b">{{ category.id }}</td>
+                            <td class="py-2 px-4 border-b">{{ category.name }}</td>
+                            <td class="py-2 px-4 border-b relative">
+                                <button (click)="toggleMenu(i)" class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-emerald-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                        <path fill-rule="evenodd" d="M4.5 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm6 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <div *ngIf="menuOpenIndex === i" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                        <a (click)="openEditModal(category); closeMenu()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Edit</a>
+                                        <a (click)="deleteCategory(category.id); closeMenu()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <app-add-category-modal #addCategoryModal (categoryAdded)="onCategoryAdded()"></app-add-category-modal>
+    <app-edit-category-modal #editCategoryModal (onSaved)="loadCategories()"></app-edit-category-modal>
+</div>

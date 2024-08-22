@@ -1,0 +1,78 @@
+<div>
+    <app-header></app-header>
+    <app-sidenav></app-sidenav>
+    <div class="min-h-screen flex flex-col bg-gradient-to-t from-emerald-200 to-white">
+        <div class="container mx-auto px-4 pt-6">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl text-emerald-800 font-bold mb-4">Building reports</h1>
+                <div class="flex items-center">
+                    <div class="mb-4 mr-2">
+                        <label class="block text-gray-700">Filter by building</label>
+                        <select class="w-full px-3 py-2 border rounded" [(ngModel)]="selectedBuildingId">
+                          <option *ngFor="let building of buildings" [value]="building.id">{{ building.name }}</option>
+                        </select>
+                      </div>
+                      <button (click)="filterBuildingReport()" class="px-4 py-2 bg-emerald-700 text-white rounded mr-2">Filter</button>
+                      <button (click)="loadBuildingsReports()" class="px-4 py-2 bg-emerald-700 text-white rounded">Show all</button>
+                </div>
+            </div>
+            <div class="relative overflow-visible rounded-lg shadow-lg">
+              <table class="min-w-full bg-white rounded-lg relative z-0">
+                <thead class="text-emerald-800">
+                    <tr>
+                        <th class="py-2 px-4 border-b">Building</th>
+                        <th class="py-2 px-4 border-b">Opened Tasks</th>
+                        <th class="py-2 px-4 border-b">In Progress Tasks</th>
+                        <th class="py-2 px-4 border-b">Closed Tasks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let report of buildingReports; let i = index" class="text-center">
+                      <td class="py-2 px-4 border-b">{{ report.building }}</td>
+                      <td class="py-2 px-4 border-b">{{ report.openTasks }}</td>
+                      <td class="py-2 px-4 border-b">{{ report.inProgressTasks }}</td>
+                      <td class="py-2 px-4 border-b">{{ report.closedTasks }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 pt-6">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl text-emerald-800 font-bold mb-4">Staff reports</h1>
+                <div class="flex items-center">
+                    <div class="mb-4 mr-2">
+                        <label class="block text-gray-700">Filter by staff</label>
+                        <select class="w-full px-3 py-2 border rounded" [(ngModel)]="selectedStaffId">
+                          <option *ngFor="let staff of staffs" [value]="staff.id">{{ staff.name }}</option>
+                        </select>
+                      </div>
+                      <button (click)="filterStaffReport()" class="px-4 py-2 bg-emerald-700 text-white rounded mr-2">Filter</button>
+                      <button (click)="loadStaffReports()" class="px-4 py-2 bg-emerald-700 text-white rounded">Show all</button>
+                </div>
+            </div>
+            <div class="relative overflow-visible rounded-lg shadow-lg">
+              <table class="min-w-full bg-white rounded-lg relative z-0">
+                <thead class="text-emerald-800">
+                    <tr>
+                        <th class="py-2 px-4 border-b">Staff name</th>
+                        <th class="py-2 px-4 border-b">Opened Tasks</th>
+                        <th class="py-2 px-4 border-b">In Progress Tasks</th>
+                        <th class="py-2 px-4 border-b">Closed Tasks</th>
+                        <th class="py-2 px-4 border-b">Average closing time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let report of staffReports; let i = index" class="text-center">
+                      <td class="py-2 px-4 border-b">{{ report.staffName }}</td>
+                      <td class="py-2 px-4 border-b">{{ report.openTasks }}</td>
+                      <td class="py-2 px-4 border-b">{{ report.inProgressTasks }}</td>
+                      <td class="py-2 px-4 border-b">{{ report.closedTasks }}</td>
+                      <td class="py-2 px-4 border-b">{{ report.averageCloseTime }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
